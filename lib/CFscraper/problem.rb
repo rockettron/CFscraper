@@ -1,9 +1,9 @@
 require_relative "helper"
 
 module CFscraper
-	class Problem
+	class Problem < CFscraper::Scraper
 
-    	def attributes
+    	def self.attributes
     		%w{
     			title
     			time_limit
@@ -16,14 +16,7 @@ module CFscraper
     			note
     		}    	
     	end
-
-    	prepend Helper
-
-    	def initialize(url)
-    		@problem_url = url
-    		@dom = html_loader(@problem_url)
-    	end
-
+    	
     	def title
     		@title ||= node_dom.at_css(".header .title").text
     	end
