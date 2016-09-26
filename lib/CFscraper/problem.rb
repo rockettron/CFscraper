@@ -2,21 +2,21 @@ require_relative "helper"
 
 module CFscraper
 	class Problem < CFscraper::Scraper
+        def initialize(*attr)
+            super(*attr)
+    	    @attributes = %w{
+        	   title
+               time_limit   
+               memory_limit
+               input_file
+               output_file
+               statement
+               input_specification
+               output_specification
+               note
+            }    	
+        end
 
-    	def self.attributes
-    		%w{
-    			title
-    			time_limit
-    			memory_limit
-    			input_file
-    			output_file
-    			statement
-    			input_specification
-    			output_specification
-    			note
-    		}    	
-    	end
-    	
     	def title
     		@title ||= node_dom.at_css(".header .title").text
     	end
